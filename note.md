@@ -17,10 +17,9 @@ env\Scripts\activate
 env\Scripts\deactivate
 ```
 
-**Install some requirements:**
+**Install requirements from file:**
 ```
-pip install django
-pip install mysqlclient
+pip install -r requirements.txt
 ```
 
 @for more information: [link](https://www.tabnine.com/blog/how-to-create-django-projects-in-pycharm-community-edition/)
