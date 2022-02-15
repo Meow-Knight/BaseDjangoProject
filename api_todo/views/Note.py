@@ -11,6 +11,7 @@ from api_todo.serializers.Note import NoteSerializer
 class NoteViewSet(ModelViewSet):
     queryset = Note.objects.all()
     serializer_class = NoteSerializer
+    pagination_class = PageNumberPagination
 
     @action(detail=False, methods=['post'])
     def list_note_by_user(self, request):
@@ -18,6 +19,7 @@ class NoteViewSet(ModelViewSet):
 
         notes = Note.objects.filter(user__username=username)
         if notes.exists():
-            return Response(NoteSerializer(notes).data, status=status.HTTP_200_OK)
+            serializer = self.get_serializer(notes, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
         else:
             return Response({"error_message": "error in find list notes by user"}, status=status.HTTP_400_BAD_REQUEST)
