@@ -12,6 +12,7 @@ from api_todo.serializers import UserSerializer
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    pagination_class = PageNumberPagination
 
     @action(detail=False, methods=['post'])
     def signup(self, request, *args, **kwargs):
